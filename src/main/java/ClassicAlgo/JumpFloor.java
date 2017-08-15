@@ -6,9 +6,16 @@ package main.java.ClassicAlgo;
 public class JumpFloor {
 
     public static void main(String[] args){
+        Iuser ss;
+
+
         for(int i = 4 ; i < 10; i++){
             System.out.println(i+":"+jumpRecursive(i) + "----" + jumpUnrecursive(i));
         }
+    }
+
+    public static Iuser test(){
+        return null;
     }
 
     public static int jumpRecursive(int n) {
