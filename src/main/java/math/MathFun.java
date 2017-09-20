@@ -11,28 +11,24 @@ public class MathFun {
 
     public static void main(String[] args) {
         Random r = new Random();
-        int a = r.nextInt(1000);
-        int b= r.nextInt(1000);
+        int a = r.nextInt(10);
+        int b= r.nextInt(10);
         System.out.println("a="+a);
         System.out.println("b="+b);
-        int res = a/b;
-        System.out.println("a-b="+res);
-        System.out.println("myr="+div(a,b));
-        System.out.println(res == div(a,b));
-        System.out.println(Integer.MAX_VALUE);
+        int res = a-b;
+        System.out.println("myr="+sub(a,b));
+//       n(Integer.MAX_VALUE);
     }
-
-
-
-
-
-
 
     public static int add(int a,int b) {
         int sum,carry ;
+        System.out.println("a:"+Integer.toBinaryString(a));
+        System.out.println("b:"+Integer.toBinaryString(b));
         do {
             sum = a^b;
             carry = (a&b)<<1;
+            System.out.println("s u m:"+Integer.toBinaryString(sum));
+            System.out.println("carry:"+Integer.toBinaryString(carry));
             a = sum;
             b = carry;
         }while(carry != 0);

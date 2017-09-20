@@ -12,7 +12,7 @@ public class HeapSort {
     }
 
     public static void minHeapFixdown(int a[],int i, int n){
-        for(int j = (2*i+2<n && a[2*i+1]>a[2*i+2])? (2*i+2) : (2*i+1) ;a[j] < a[(j-1)/2];j = (2*j+2<n && a[2*j+1]>a[2*j+2])? (2*j+2) : (2*j+1)  ){
+        for(int j = (2*i+2<n && a[2*i+1]>a[2*i+2]) ? (2*i+2) : (2*i+1) ;a[j] < a[(j-1)/2];j = (2*j+2<n && a[2*j+1]>a[2*j+2])? (2*j+2) : (2*j+1)  ){
             AllSort.swap(a,j,(j-1)/2);
             if(2*j+1 >= n)
                 break;

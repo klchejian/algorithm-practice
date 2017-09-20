@@ -1,11 +1,12 @@
 package main.java.examination;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Huawei {
 
     public static void main(String[] args){
-        test1();
+        fun2();
     }
 
     public static void test1(){
@@ -104,5 +105,103 @@ public class Huawei {
         }else {
             return (char) (num - 36 + 'A');
         }
+    }
+
+
+    public static void fun2(){
+        String str1 = "1.1.1.1";
+        String str2 = "255.255.255.255";
+        String str3 = "2.2.2.2";
+        String str4 = "3.3.3.3";
+
+        String[] aStartStr = str1.split("\\.");
+        int[] aStart = new int[aStartStr.length];
+        for(int i = 0; i < 4; i++){
+            aStart[i] = Integer.valueOf(aStartStr[i]);
+        }
+        String[] aEndStr = str2.split("\\.");
+        int[] aEnd = new int[aEndStr.length];
+        for(int i = 0; i < 4; i++){
+            aEnd[i] = Integer.valueOf(aEndStr[i]);
+        }
+        String[] bStartStr = str3.split("\\.");
+        int[] bStart = new int[bStartStr.length];
+        for(int i = 0; i < 4; i++){
+            bStart[i] = Integer.valueOf(bStartStr[i]);
+        }
+        String[] bEndStr = str4.split("\\.");
+        int[] bEnd = new int[bEndStr.length];
+        for(int i = 0; i < 4; i++){
+            bEnd[i] = Integer.valueOf(bEndStr[i]);
+        }
+
+
+        boolean flag = true;
+        for(int i  = 0; i < 4; i++){
+            if(aEnd[i]>bStart[i]){
+                break;
+            }else if(aEnd[i]<bStart[i]){
+                System.out.println("No Overlap IP");
+                return;
+            }
+        }
+
+        for(int i  = 0; i < 4; i++){
+            if(bEnd[i]>aStart[i]){
+                break;
+            }else if(bEnd[i]<aStart[i]){
+                System.out.println("No Overlap IP");
+                return;
+            }
+        }
+
+        System.out.println("Overlap IP");
+
+    }
+
+
+
+    public static void fun3(int m){
+
+//        String str = "1223 22 3232 2016";
+//        int k = m;
+
+       Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        int k = sc.nextInt();
+        String[] strArr = str.split(" ");
+        int n = strArr.length;
+        int[] res = new int [k];
+        int[] intArr = new int[strArr.length];
+        for(int i = 0;  i < n; i++){
+            int temp = Integer.valueOf(strArr[i])%1000;
+            intArr[i] = temp;
+        }
+        int minValue = Integer.MAX_VALUE;
+        ArrayList<Integer> minValueIndex = new ArrayList<>();
+        for(int j = 0; j < k;) {
+            for (int i = 0; i < n; i++) {
+                if(intArr[i] < 0)
+                    continue;
+                if (intArr[i] < minValue) {
+                    minValue = intArr[i];
+                    minValueIndex.clear();
+                    minValueIndex.add(i);
+                }else if(intArr[i] == minValue){
+                    minValueIndex.add(i);
+                }
+            }
+            for(int i = 0; i < minValueIndex.size(); i++){
+                if(j<k){
+                    res[j] = minValueIndex.get(i);
+                    intArr[minValueIndex.get(i)] = -1;
+                    j++;
+                }else
+                    break;
+            }
+            minValue = Integer.MAX_VALUE;
+            minValueIndex.clear();
+        }
+        System.out.println(strArr[res[res.length - 1]]);
     }
 }
